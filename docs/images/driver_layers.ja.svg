@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 490" width="900" height="490" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', Helvetica, Arial, sans-serif">
+  <title>USB ホストの上でデバイスのドライバを書く</title>
+  <style>
+    .t { fill: #1f2328; font-size: 14px; font-weight: 600; }
+    .s { fill: #59636e; font-size: 12px; }
+    .lk { fill: #59636e; font-size: 12px; font-style: italic; }
+    .lab { fill: #59636e; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; }
+    .note { font-size: 12px; font-weight: 600; }
+    .ex { fill: #fbefff; stroke: #c297ff; }
+    .c { fill: #ddf4ff; stroke: #54aeff; }
+    .hw { fill: #dafbe1; stroke: #4ac26b; }
+    .pipe { fill: #f6f8fa; stroke: #8c959f; }
+    .arr { stroke: #8c959f; stroke-width: 1.5; fill: none; marker-end: url(#a); }
+    .ah { fill: #8c959f; }
+    .ctrl { stroke: #8250df; stroke-width: 2.5; fill: none; marker-end: url(#ac); }
+    .ach { fill: #8250df; }
+    .data { stroke: #1a7f37; stroke-width: 4; fill: none; marker-end: url(#ad); }
+    .adh { fill: #1a7f37; }
+    .nc { fill: #8250df; } .nd { fill: #1a7f37; }
+    .br { stroke: #d1d9e0; stroke-width: 2; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .t { fill: #f0f6fc; } .s, .lk, .lab { fill: #9198a1; }
+      .ex { fill: #271052; stroke: #ab7df8; } .c { fill: #0c2d6b; stroke: #4493f8; }
+      .hw { fill: #04260f; stroke: #3fb950; } .pipe { fill: #151b23; stroke: #656c76; }
+      .arr { stroke: #656c76; } .ah { fill: #656c76; }
+      .ctrl { stroke: #ab7df8; } .ach, .nc { fill: #ab7df8; }
+      .data { stroke: #3fb950; } .adh, .nd { fill: #3fb950; }
+      .br { stroke: #3d444d; }
+    }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="ach" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="adh" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+  <rect class="ex" x="170" y="20" width="560" height="58" rx="8"/>
+  <text class="t" x="186" y="44">Elixir（アプリケーション）</text>
+  <text class="s" x="186" y="64">RTLSDR.open(...)、RTLSDR.start()、...（ドライバの API）</text>
+  <path class="arr" d="M210,78 V116"/>
+  <text class="lk" x="224" y="102">関数の呼び出し</text>
+  <rect class="ex" x="170" y="118" width="560" height="58" rx="8"/>
+  <text class="t" x="186" y="142">Elixir（ドライバのパッケージ）</text>
+  <text class="s" x="186" y="162">デバイスの設定: コントロール転送、デバイスのレジスタ（例: lib/rtlsdr.ex）</text>
+  <path class="arr" d="M210,176 V214"/>
+  <text class="lk" x="224" y="200">:usb_host（bus_reset、enumerate、ctrl_in / ctrl_out、bulk_in_start、...）</text>
+  <rect class="c" x="170" y="216" width="560" height="58" rx="8"/>
+  <text class="t" x="186" y="240">C（このパッケージ。src/）</text>
+  <text class="s" x="186" y="260">:usb_host の NIF と C のライブラリ: バスのリセット、認識、転送</text>
+  <path class="arr" d="M210,274 V312"/>
+  <text class="lk" x="224" y="298">CSR</text>
+  <rect class="hw" x="170" y="314" width="560" height="58" rx="8"/>
+  <text class="t" x="186" y="338">FPGA（このパッケージの USB ホスト）</text>
+  <text class="s" x="186" y="358">ULPI のリンク、SOF、トランザクション、bulk IN のエンジン</text>
+  <path class="arr" d="M210,372 V410"/>
+  <text class="lk" x="224" y="396">bulk IN で受け取ったデータ（1 バイトを 1 ワードに）</text>
+  <rect class="pipe" x="170" y="412" width="560" height="58" rx="8"/>
+  <text class="t" x="186" y="436">FPGA（パイプライン）</text>
+  <text class="s" x="186" y="456">usb_bulk_in() |> ...（アプリケーションの defpipeline）</text>
+  <path class="br" d="M148,20 h-8 v254 h8"/>
+  <text class="lab" x="100" y="151">CPU</text>
+  <path class="br" d="M148,314 h-8 v156 h8"/>
+  <text class="lab" x="100" y="396">FPGA</text>
+  <path class="ctrl" d="M730,49 H760 V339 H734"/>
+  <text class="note nc"><tspan x="770" y="180">制御:</tspan><tspan x="770" y="196">最初に一度、</tspan><tspan x="770" y="212">ゆっくり</tspan></text>
+  <path class="data" d="M670,372 V408"/>
+  <text class="note nd" x="740" y="396">データ: 途切れずに、速く</text>
+</svg>
