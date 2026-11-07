@@ -23,6 +23,9 @@ defmodule EHLS.USBHost do
   def blocks, do: %{usb_bulk_in: {:source, 0}}
 
   @impl true
+  def types, do: %{usb_bulk_in: {nil, :u8}}
+
+  @impl true
   def peripherals, do: [:usb_host]
 
   @impl true
