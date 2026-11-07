@@ -8,7 +8,7 @@ stream never passes through the CPU.
 ```elixir
 use EHLS, blocks: [EHLS.USBHost]
 
-defpipeline iq do
+definstance iq do
   usb_bulk_in() |> ... 
 end
 ```

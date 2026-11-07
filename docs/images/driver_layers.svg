@@ -55,7 +55,7 @@
   <text class="lk" x="224" y="396">bulk IN payload, one byte per word</text>
   <rect class="pipe" x="170" y="412" width="560" height="58" rx="8"/>
   <text class="t" x="186" y="436">FPGA — the pipeline</text>
-  <text class="s" x="186" y="456">usb_bulk_in() |> ...  (the application's defpipeline)</text>
+  <text class="s" x="186" y="456">usb_bulk_in() |> ...  (the application's definstance)</text>
   <path class="br" d="M148,20 h-8 v254 h8"/>
   <text class="lab" x="100" y="151">CPU</text>
   <path class="br" d="M148,314 h-8 v156 h8"/>

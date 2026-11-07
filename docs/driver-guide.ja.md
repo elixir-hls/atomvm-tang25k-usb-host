@@ -103,7 +103,7 @@ setup = <<0xC0, 0, wvalue::16-little, windex::16-little, n::16-little>>
 置きます）。受け取ったデータは、パイプラインの `usb_bulk_in()` の段に入ります。
 
 ```elixir
-defpipeline iq do
+definstance iq do
   usb_bulk_in() |> ...
 end
 ```

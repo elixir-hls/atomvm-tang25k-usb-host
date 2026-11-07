@@ -101,7 +101,7 @@ From the start on, the bulk IN engine asks the device for data continuously (aft
 waits a moment), and the pipeline's `usb_bulk_in()` stage gets the payload:
 
 ```elixir
-defpipeline iq do
+definstance iq do
   usb_bulk_in() |> ...
 end
 ```
