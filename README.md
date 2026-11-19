@@ -5,6 +5,12 @@ A USB 2.0 high-speed host on a USB3300 ULPI PHY for
 package (`EHLS.Blocks`) whose bulk IN engine feeds a pipeline directly, so a device's data
 stream never passes through the CPU.
 
+In the application's mix.exs, beside its target:
+
+```elixir
+{:atomvm_tang25k_usb_host, "~> 0.1"}
+```
+
 ```elixir
 use EHLS, blocks: [EHLS.USBHost]
 
